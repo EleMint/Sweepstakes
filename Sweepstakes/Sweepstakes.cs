@@ -12,6 +12,7 @@ namespace Sweepstakes
         public string name;
         private Dictionary<int, Contestant> registeredContestants;
         private Random random = new Random();
+        public Contestant sweepstakesWinner;
         // Constructor
         public Sweepstakes(string name)
         {
@@ -26,6 +27,7 @@ namespace Sweepstakes
         public string PickWinner()
         {
             int winner = random.Next(registeredContestants.Count + 1);
+            sweepstakesWinner = registeredContestants[winner];
             return $"The Winner is: {registeredContestants[winner].lastName}, {registeredContestants[winner].firstName}";
         }
         public void PrintContestantInfo(Contestant contestant)

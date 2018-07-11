@@ -19,6 +19,11 @@ namespace Sweepstakes
         {
             Console.WriteLine(message);
         }
+        public static string GetUserString(string message)
+        {
+            Console.WriteLine(message);
+            return Console.ReadLine().Trim();
+        }
         public static void EmailSweepstakesWinner(Contestant Winner)
         {
             var fromAddress = new MailAddress("EleMintSweepstakes@gmail.com", "Dylan Schmidt");
@@ -44,6 +49,11 @@ namespace Sweepstakes
             {
                 smtp.Send(message);
             }
+        }
+        public static int AskUserForInt(string message)
+        {
+            Console.WriteLine(message);
+            return int.Parse(Console.ReadLine());
         }
     }
 }
