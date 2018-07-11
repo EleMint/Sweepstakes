@@ -26,22 +26,22 @@ namespace Sweepstakes
         }
         public static void EmailSweepstakesWinner(Contestant Winner)
         {
-            var fromAddress = new MailAddress("EleMintSweepstakes@gmail.com", "Dylan Schmidt");
-            var toAddress = new MailAddress($"{Winner.email}", $"{Winner.firstName} {Winner.lastName}");
-            string fromPassword = "Schmidt16";
+            MailAddress fromAddress = new MailAddress("EleMintSweepstakes@gmail.com", "Dylan Schmidt");
+            MailAddress toAddress = new MailAddress($"{Winner.email}", $"{Winner.firstName} {Winner.lastName}");
+            string myPassword = "Schmidt16";
             string subject = "You've Won!";
             string body = $"Congratulations {Winner.firstName}, You've Won The Sweepstakes!";
 
-            var smtp = new SmtpClient
+            SmtpClient smtp = new SmtpClient
             {
                 Host = "smtp.gmail.com",
                 Port = 587,
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                Credentials = new NetworkCredential(fromAddress.Address, myPassword)
             };
-            using (var message = new MailMessage(fromAddress, toAddress)
+            using (MailMessage message = new MailMessage(fromAddress, toAddress)
             {
                 Subject = subject,
                 Body = body

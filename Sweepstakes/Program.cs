@@ -12,6 +12,7 @@ namespace Sweepstakes
         {
             ISweepstakesManager manager = UI.AskStyleofSweepstakesManager();
             MarketingFirm marketingFirm = new MarketingFirm(manager);
+            Console.ReadLine();
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Sweepstakes
 {
     class MarketingFirm
     {
+        public int numberOfSweepstakes;
         // Constructor
         public MarketingFirm(ISweepstakesManager manager)
         {
@@ -16,14 +17,14 @@ namespace Sweepstakes
         // Member Methods
         private void CreateSweepstakes(ISweepstakesManager manager)
         {
-            int numberOfSweepstakes = UI.AskUserForInt("How Many Sweepstakes Would You Like To Make?");
+            numberOfSweepstakes = UI.AskUserForInt("How Many Sweepstakes Would You Like To Make?");
             for (int i = 0; i < numberOfSweepstakes; i++)
             {
                 Sweepstakes sweepstakes = new Sweepstakes(UI.GetUserString("What Is The Name Of Your Sweepstakes?"));
                 sweepstakes = AddContestants(sweepstakes);
                 manager.InsertSweekstakes(sweepstakes);
             }
-            PickWinner(manager, numberOfSweepstakes);
+            PickWinners(manager);
         }
         public Sweepstakes AddContestants(Sweepstakes sweepstakes)
         {
@@ -35,14 +36,11 @@ namespace Sweepstakes
             }
             return sweepstakes;
         }
-        public void PickWinner(ISweepstakesManager manager, int numberOfSweepstakes)
+        public void PickWinners(ISweepstakesManager manager)
         {
-            while (numberOfSweepstakes > 0)
+            for(int i = 0; i < numberOfSweepstakes; i++)
             {
-                Sweepstakes currentSweepstakes;
-                currentSweepstakes = manager.GetSweepstakes();
-                currentSweepstakes.PickWinner();
-                UI.EmailSweepstakesWinner(currentSweepstakes.sweepstakesWinner);
+                UI.Print(manager.GetSweepstakes().PickWinner());
             }
         }
     }

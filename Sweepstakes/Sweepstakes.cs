@@ -28,6 +28,7 @@ namespace Sweepstakes
         {
             int winner = random.Next(registeredContestants.Count + 1);
             sweepstakesWinner = registeredContestants[winner];
+            UI.EmailSweepstakesWinner(sweepstakesWinner);
             return $"The Winner is: {registeredContestants[winner].lastName}, {registeredContestants[winner].firstName}";
         }
         public void PrintContestantInfo(Contestant contestant)
