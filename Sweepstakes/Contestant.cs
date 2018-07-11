@@ -16,7 +16,9 @@ namespace Sweepstakes
         // Constructor
         public Contestant()
         {
-
+            firstName = UI.GetUserInformation("Please Enter Your First Name: ");
+            lastName = UI.GetUserInformation("Please Enter Your Last Name: ");
+            email = UI.GetUserInformation("Please Enter Your Email Address: ");
         }
         // Member Methods
 

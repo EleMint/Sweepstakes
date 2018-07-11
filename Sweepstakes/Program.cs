@@ -10,6 +10,8 @@ namespace Sweepstakes
     {
         static void Main(string[] args)
         {
+            Contestant Dylan = new Contestant();
+            UI.EmailSweepstakesWinner(Dylan);
             Sweepstakes mySweepstakes = new Sweepstakes("Sweepstakes");
         }
     }
