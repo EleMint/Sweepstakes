@@ -10,9 +10,19 @@ namespace Sweepstakes
     {
         static void Main(string[] args)
         {
-            Contestant Dylan = new Contestant();
-            UI.EmailSweepstakesWinner(Dylan);
             Sweepstakes mySweepstakes = new Sweepstakes("Sweepstakes");
+            Contestant contestant = new Contestant();
+            Contestant contestant2 = new Contestant();
+            Contestant contestant3 = new Contestant();
+            Contestant contestant4 = new Contestant();
+            mySweepstakes.RegisterContestant(contestant);
+            mySweepstakes.RegisterContestant(contestant2);
+            mySweepstakes.RegisterContestant(contestant3);
+            mySweepstakes.RegisterContestant(contestant4);
+            string winner = mySweepstakes.PickWinner();
+            UI.Print(winner);
+            Console.ReadLine();
+            
         }
     }
 }

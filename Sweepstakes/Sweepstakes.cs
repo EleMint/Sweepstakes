@@ -10,8 +10,8 @@ namespace Sweepstakes
     {
         // Member Variables
         public string name;
-        public Dictionary<int, Contestant> registeredContestants;
-        private Random random;
+        private Dictionary<int, Contestant> registeredContestants;
+        private Random random = new Random();
         // Constructor
         public Sweepstakes(string name)
         {
