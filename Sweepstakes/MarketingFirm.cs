@@ -8,64 +8,22 @@ namespace Sweepstakes
 {
     class MarketingFirm
     {
-        // Member Variables
-        SweepstakesQueueManager queueManager = null;
-        SweepstakesStackManager stackManager = null;
-        bool isStack;
         // Constructor
-        public MarketingFirm()
+        public MarketingFirm(ISweepstakesManager manager)
         {
-            AskStyleofSweepstakesManager();
+            CreateSweepstakes(manager);
         }
         // Member Methods
-        private void AskStyleofSweepstakesManager()
-        {
-            switch (UI.GetUserString("What Kind Of Manager Would You Like? (Stack or Queue)").ToLower())
-            {
-                case "stack":
-                    stackManager = new SweepstakesStackManager();
-                    isStack = true;
-                    break;
-                case "queue":
-                    queueManager = new SweepstakesQueueManager();
-                    isStack = false;
-                    break;
-                default:
-                    queueManager = new SweepstakesQueueManager();
-                    isStack = false;
-                    break;
-            }
-        }
-        private void CreateSweepstakes()
+        private void CreateSweepstakes(ISweepstakesManager manager)
         {
             int numberOfSweepstakes = UI.AskUserForInt("How Many Sweepstakes Would You Like To Make?");
             for (int i = 0; i < numberOfSweepstakes; i++)
             {
                 Sweepstakes sweepstakes = new Sweepstakes(UI.GetUserString("What Is The Name Of Your Sweepstakes?"));
                 sweepstakes = AddContestants(sweepstakes);
-                if (isStack)
-                {
-                    stackManager.InsertSweekstakes(sweepstakes);
-                }
-                else
-                {
-                    queueManager.InsertSweekstakes(sweepstakes);
-                }
+                manager.InsertSweekstakes(sweepstakes);
             }
-            while (stackManager.sweepstakesStack.Count > 0)
-            {
-                Sweepstakes currentSweepstakes;
-                if(isStack)
-                {
-                    currentSweepstakes = stackManager.GetSweepstakes();
-                }
-                else
-                {
-                    currentSweepstakes = queueManager.GetSweepstakes();
-                }
-                currentSweepstakes.PickWinner();
-                UI.EmailSweepstakesWinner(currentSweepstakes.sweepstakesWinner);
-            }
+            PickWinner(manager, numberOfSweepstakes);
         }
         public Sweepstakes AddContestants(Sweepstakes sweepstakes)
         {
@@ -76,6 +34,16 @@ namespace Sweepstakes
                 sweepstakes.RegisterContestant(contestant);
             }
             return sweepstakes;
+        }
+        public void PickWinner(ISweepstakesManager manager, int numberOfSweepstakes)
+        {
+            while (numberOfSweepstakes > 0)
+            {
+                Sweepstakes currentSweepstakes;
+                currentSweepstakes = manager.GetSweepstakes();
+                currentSweepstakes.PickWinner();
+                UI.EmailSweepstakesWinner(currentSweepstakes.sweepstakesWinner);
+            }
         }
     }
 }

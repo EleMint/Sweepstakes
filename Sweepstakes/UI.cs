@@ -55,5 +55,17 @@ namespace Sweepstakes
             Console.WriteLine(message);
             return int.Parse(Console.ReadLine());
         }
+        public static ISweepstakesManager AskStyleofSweepstakesManager()
+        {
+            switch (UI.GetUserString("What Kind Of Manager Would You Like? (Stack or Queue)").ToLower())
+            {
+                case "stack":
+                    return new SweepstakesStackManager();
+                case "queue":
+                    return new SweepstakesQueueManager();
+                default:
+                    return new SweepstakesQueueManager();
+            }
+        }
     }
 }

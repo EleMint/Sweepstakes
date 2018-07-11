@@ -10,7 +10,8 @@ namespace Sweepstakes
     {
         static void Main(string[] args)
         {
-            MarketingFirm marketingFirm = new MarketingFirm();
+            ISweepstakesManager manager = UI.AskStyleofSweepstakesManager();
+            MarketingFirm marketingFirm = new MarketingFirm(manager);
         }
     }
 }
