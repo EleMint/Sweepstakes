@@ -9,7 +9,6 @@ namespace Sweepstakes
     class SweepstakesStackManager : ISweepstakesManager
     {
         public Stack<Sweepstakes> sweepstakesAll;
-
         public SweepstakesStackManager()
         {
             sweepstakesAll = new Stack<Sweepstakes>();

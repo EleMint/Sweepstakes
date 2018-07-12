@@ -9,12 +9,10 @@ namespace Sweepstakes
     class MarketingFirm
     {
         public int numberOfSweepstakes;
-        // Constructor
         public MarketingFirm(ISweepstakesManager manager)
         {
             CreateSweepstakes(manager);
         }
-        // Member Methods
         private void CreateSweepstakes(ISweepstakesManager manager)
         {
             numberOfSweepstakes = UI.AskUserForInt("How Many Sweepstakes Would You Like To Make?");
